@@ -29,16 +29,22 @@ export class AppComponent {
   getCal(){
 
     this.service.findByPinCodeAndDate(this.pincode, this.startDate)
-    .subscribe(res => this.results = res.centers.filter((a:any) => a.sessions.some((b:any) => b.available_capacity !== 0)), err => console.error(err)); 
-    
-    if(this.results.length > 0){
+    .subscribe(res => {
+      this.results = res.centers.filter((a:any) => a.sessions.some((b:any) => b.available_capacity !== 0));
+      if(this.results.length > 0){
       this.formEnabled = false
     }
     else {
       this._snackBar.open('No Slots Available! Try a different Date Range/Pin Code', 'Hide', {
         duration: 3000
       });
-    }
+    }}, err => {
+      console.error(err);
+      this._snackBar.open('There was an error getting data, please try later!', 'Hide', {
+        duration: 3000
+      })
+    });
+    
   }
 }
 
