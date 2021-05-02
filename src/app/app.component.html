@@ -56,11 +56,6 @@
     margin: 0 8px;
   }
 
-  .toolbar #youtube-logo {
-    height: 40px;
-    margin: 0 16px;
-  }
-
   .toolbar #twitter-logo:hover,
   .toolbar #youtube-logo:hover {
     opacity: 0.8;
@@ -70,9 +65,10 @@
     display: flex;
     margin: 82px auto 32px;
     padding: 0 16px;
-    max-width: 960px;
+    max-width: 60%;
+    width: max-content;
     flex-direction: column;
-    align-items: center;
+    align-items: left;
   }
 
   svg.material-icons {
@@ -286,7 +282,7 @@
     </form>
     </div>
     <ng-template #elseBlock>
-      <h2>Showing available slots between {{startDate}} - {{endDate}}</h2>
+      <h2>Showing all slots between {{startDate}} - {{endDate}} for {{pincode}}</h2>
       <div  *ngFor="let res of results">
         <app-card-component [model]="res"></app-card-component>
       </div>

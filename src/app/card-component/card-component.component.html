@@ -7,7 +7,6 @@
         <span>Fee: {{model.fee_type}}</span>
         <span>From: {{model.from}} To: {{model.to}} </span>
         <div *ngFor="let session of model.sessions">
-            <ng-container *ngIf="session.available_capacity > 0">
         <mat-accordion>
             <mat-expansion-panel hideToggle>
               <mat-expansion-panel-header>
@@ -21,12 +20,11 @@
                 <mat-list role="list">
                     <mat-list-item role="listitem">Age: {{session.min_age_limit}}+</mat-list-item>
                     <mat-list-item role="listitem">Number of Slots: {{session.slots.length}} </mat-list-item>
-                    <mat-list-item role="listitem">Capacity: {{session.available_capacity}} </mat-list-item>
+                    <mat-list-item role="listitem" [class]="session.available_capacity ? 'success' : 'warn'">Capacity: {{session.available_capacity}} </mat-list-item>
                     <mat-list-item role="listitem">Vaccine: {{session.vaccine === "" ? "Not Specified" : session.vaccine }} </mat-list-item>
                 </mat-list>
             </mat-expansion-panel>
         </mat-accordion>  
-    </ng-container>
     </div>
     </mat-card-content>
   </mat-card>

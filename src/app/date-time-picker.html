@@ -1,8 +1,8 @@
 <mat-form-field appearance="fill">
-    <mat-label>Select a Date</mat-label>
+    <mat-label>Select a Date, we'll find a slot +/- 3 days from then </mat-label>
     <mat-date-range-input [rangePicker]="picker">
-      <input matStartDate placeholder="Start date" (dateChange)="selectStart.emit($event.value)">
-      <input matEndDate placeholder="End date" (dateChange)="selectEnd.emit($event.value)">
+      <input matStartDate (dateChange)="selectStart.emit($event.value)">
+      <input matEndDate (dateChange)="selectEnd.emit($event.value)">
     </mat-date-range-input>
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-date-range-picker #picker ></mat-date-range-picker>
