@@ -29,7 +29,8 @@ export class AppComponent {
   getCal(){
 
     this.service.findByPinCodeAndDate(this.pincode, this.startDate)
-    .subscribe(res => this.results = res.centers, err => console.error(err)); 
+    .subscribe(res => this.results = res.centers.filter((a:any) => a.sessions.some((b:any) => b.available_capacity !== 0)), err => console.error(err)); 
+    
     if(this.results.length > 0){
       this.formEnabled = false
     }
