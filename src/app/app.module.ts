@@ -10,19 +10,19 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import {MatInputModule} from '@angular/material/input';
 import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
-import { DateRangePickerSelectionStrategyExample } from './date-time-picker';
+import { DatePickerComponent } from './date-picker.component';
 import { FormsModule } from '@angular/forms';
 import { CardComponentComponent } from './card-component/card-component.component';
 import {MatCardModule} from '@angular/material/card'; 
 import {MatExpansionModule} from '@angular/material/expansion'; 
 import {MatListModule} from '@angular/material/list'; 
-
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 import {MatSnackBarModule} from '@angular/material/snack-bar'; 
 @NgModule({
   declarations: [
     AppComponent,
-    DateRangePickerSelectionStrategyExample,
+    DatePickerComponent,
     CardComponentComponent
   ],
   imports: [
@@ -39,7 +39,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatCardModule,
     MatExpansionModule,
     MatListModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatSlideToggleModule
   ],
   providers: [AppService],
   bootstrap: [AppComponent]

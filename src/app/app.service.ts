@@ -12,7 +12,7 @@ export class AppService {
         this.http = httpClient;
     }
 
-    findByPinCodeAndDate(pinCode: string, date:string): Observable<any>{
+    findCalendarByPinCodeAndDate(pinCode: string, date:string): Observable<any>{
         let capability = "calendarByPin";
         let params = new HttpParams({fromObject:{pincode:pinCode, date:date}})
         let url = this.baseURL+this.moduleURL+capability;
@@ -24,5 +24,15 @@ export class AppService {
         return this.http.get<any>(url,options);
     }
 
+    findByPinCodeAndDate(pinCode: string, date:string): Observable<any>{
+        let capability = "findByPin";
+        let params = new HttpParams({fromObject:{pincode:pinCode, date:date}})
+        let url = this.baseURL+this.moduleURL+capability;
+        let options = {
+            params: params,
+            acceptLanguage: "en_US"
+        };
 
+        return this.http.get<any>(url,options);
+    }
 }

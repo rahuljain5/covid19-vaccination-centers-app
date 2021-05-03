@@ -111,32 +111,6 @@
     color: #125699;
   }
 
-  .terminal {
-    position: relative;
-    width: 80%;
-    max-width: 600px;
-    border-radius: 6px;
-    padding-top: 45px;
-    margin-top: 8px;
-    overflow: hidden;
-    background-color: rgb(15, 15, 16);
-  }
-
-  .terminal::before {
-    content: "\2022 \2022 \2022";
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 4px;
-    background: rgb(58, 58, 58);
-    color: #c2c3c4;
-    width: 100%;
-    font-size: 2rem;
-    line-height: 0;
-    padding: 14px 0;
-    text-indent: 4px;
-  }
-
   .circle-link {
     height: 40px;
     width: 40px;
@@ -167,6 +141,7 @@
   footer a {
     display: flex;
     align-items: center;
+    flex-direction: row;
   }
 
   .github-star-badge {
@@ -236,6 +211,10 @@
   mat-form-field {
     display: block;
   }
+  .block{
+    display: block;
+
+  }
 </style>
 
 <!-- Toolbar -->
@@ -274,16 +253,14 @@
         <mat-label>Pincode</mat-label>
         <input matInput placeholder="Ex. 123456"  name="pincode" [(ngModel)]="pincode" >
       </mat-form-field>
-    <date-range-picker-selection-strategy-example (selectEnd)="setEndDate($event)" (selectStart)="setStartDate($event)"></date-range-picker-selection-strategy-example >
-    <button mat-icon-button color="warn" (click)="getCal()" title="Search">
-      <mat-icon>
-        arrow_forward
-        </mat-icon>
-    </button>
+    <datepicker (selectStart)="setStartDate($event)"></datepicker >
+      <mat-slide-toggle class="block" color="primary" name="toggleweek" [(ngModel)]="checkWeek">&#x00B1;3 days from selection</mat-slide-toggle>
+        <button class = "block" mat-stroked-button color="primary" (click)="getCal()" title="Search">GO</button>
+      
     </form>
     </div>
     <ng-template #elseBlock>
-      <h2>Showing all slots between {{startDate}} - {{endDate}} for {{pincode}}</h2>
+      <h2 >Showing all available slots for {{pincode}}</h2>
       <div  *ngFor="let res of results">
         <app-card-component [model]="res"></app-card-component>
       </div>
