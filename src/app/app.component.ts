@@ -21,10 +21,10 @@ export class AppComponent {
 
 
   setStartDate(event:Date){
-    this.startDate = event.toLocaleDateString().split('/').join('-');
+    this.startDate = `${event.getDate()}-${event.getMonth()}-${event.getFullYear()}`;
   }  
   setEndDate(event:Date){
-    this.endDate = event.toLocaleDateString().split('/').join('-');
+    this.endDate = `${event.getDate()}-${event.getMonth()}-${event.getFullYear()}`;
   }
   getCal(){
 
