@@ -269,7 +269,7 @@
     </form>
     </mat-card-content></mat-card>
   </div>
-  <app-find-district-sessions></app-find-district-sessions>
+  <app-find-district-sessions *ngIf="formEnabled"></app-find-district-sessions>
     <ng-template #elseBlock>
       <h2 >Showing all available slots for {{pincode}}</h2>
       <div  *ngFor="let res of results">
