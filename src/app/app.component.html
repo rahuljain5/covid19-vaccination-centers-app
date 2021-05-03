@@ -67,6 +67,7 @@
     padding: 0 16px;
     max-width: 90%;
     width: max-content;
+    height: max-content;
     flex-direction: column;
     align-items: left;
   }
@@ -148,6 +149,7 @@
     color: #24292e;
     display: flex;
     align-items: center;
+    width: auto;
     font-size: 12px;
     padding: 3px 10px;
     border: 1px solid rgba(27,31,35,.2);
@@ -213,6 +215,7 @@
   }
   .block{
     display: block;
+    margin-bottom: 1%;
 
   }
 </style>
@@ -248,6 +251,12 @@
 
   <!-- Resources -->
   <div *ngIf="formEnabled; else elseBlock">
+    <mat-card class="card">
+      <mat-card-header>
+        <mat-card-title>Find Vaccination Centres Near You</mat-card-title>
+        <mat-card-subtitle>Search by PinCode & Date</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
     <form class="example-form">
       <mat-form-field appearance="fill">
         <mat-label>Pincode</mat-label>
@@ -258,14 +267,15 @@
         <button class = "block" mat-stroked-button color="primary" (click)="getCal()" title="Search">GO</button>
       
     </form>
-    </div>
+    </mat-card-content></mat-card>
+  </div>
+  <app-find-district-sessions></app-find-district-sessions>
     <ng-template #elseBlock>
       <h2 >Showing all available slots for {{pincode}}</h2>
       <div  *ngFor="let res of results">
         <app-card-component [model]="res"></app-card-component>
       </div>
     </ng-template>
-
   <!-- Links -->
 
 

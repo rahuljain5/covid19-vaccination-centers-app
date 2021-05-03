@@ -1,0 +1,27 @@
+<mat-card class="card">
+    <mat-card-header>
+      <mat-card-title>Find Vaccination Centres in District</mat-card-title>
+      <mat-card-subtitle>Search by State & District</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+  <form class="example-form">
+    <mat-form-field appearance="fill">
+        <mat-label>State</mat-label>
+        <mat-select name="selectedState" [(ngModel)]="selectedState" (selectionChange)="fillDistricts()">
+          <mat-option *ngFor="let s of states" [value]="s">{{s.state_name}}</mat-option>
+        </mat-select>
+      </mat-form-field> 
+      <mat-form-field appearance="fill">
+        <mat-label>District</mat-label>
+        <mat-select name="selectedDistrict" [(ngModel)]="selectedDistrict" >
+          <mat-option *ngFor="let d of districts" [value]="d">{{d.district_name}}</mat-option>
+        </mat-select>
+      </mat-form-field> 
+  <datepicker (selectStart)="setStartDate($event)"></datepicker >
+    <mat-slide-toggle class="block" color="primary" name="toggleweek" [(ngModel)]="checkWeek">&#x00B1;3 days from selection</mat-slide-toggle>
+    <small class="warn">Not available temporarily</small>
+      <button disabled class = "block" mat-stroked-button color="primary" title="Search" (click)="getCal()">GO</button>
+    
+  </form>
+  </mat-card-content>
+</mat-card>
