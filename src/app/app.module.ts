@@ -10,7 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import {MatInputModule} from '@angular/material/input';
 import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
-import { DatePickerComponent } from './date-picker.component';
+import { DatePickerComponent } from './datepicker-component/date-picker.component';
 import { FormsModule } from '@angular/forms';
 import { CardComponentComponent } from './card-component/card-component.component';
 import {MatCardModule} from '@angular/material/card'; 

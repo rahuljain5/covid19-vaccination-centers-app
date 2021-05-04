@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AppService } from '../app.service';
 
@@ -8,13 +8,14 @@ import { AppService } from '../app.service';
   styleUrls: ['./find-district-sessions.component.scss']
 })
 export class FindDistrictSessionsComponent implements OnInit {
-  selectedState:any = {};
-  selectedDistrict:any = {};
-  checkWeek:boolean = false;
-  districts:any;
+  selectedState: any = {};
+  selectedDistrict: any = {};
+  checkWeek: boolean = false;
+  districts: any;
   states: any;
   startDate: Date = new Date();
   results = [];
+  @Output() resultsLoaded: EventEmitter<any> = new EventEmitter()
   constructor(private service: AppService, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
@@ -25,9 +26,10 @@ export class FindDistrictSessionsComponent implements OnInit {
   setStartDate(event: Date) {
     this.startDate = event
   }
-  fillDistricts(){
+  fillDistricts() {
     this.service.getDistricts(this.selectedState.state_id).subscribe(res => {
       this.districts = res.districts;
+
     }, err => console.error(err))
   }
   getCal() {
@@ -45,7 +47,8 @@ export class FindDistrictSessionsComponent implements OnInit {
       .subscribe(res => {
         this.results = res.centers;
         if (this.results.length > 0) {
-                    // this.formEnabled = false;
+          // this.formEnabled = false;
+          this.resultsLoaded.emit(this.results)
         }
         else {
           this.noSlotsAvailableError();
@@ -61,6 +64,7 @@ export class FindDistrictSessionsComponent implements OnInit {
         this.results = res.sessions.map((session: any) => { return { name: session.name, district_name: session.district_name, block_name: session.block_name, from: session.from, to: session.to, fee_type: session.fee_type, sessions: [session] } });
         if (this.results.length > 0) {
           // this.formEnabled = false;
+          this.resultsLoaded.emit(this.results)
         }
         else {
           this.noSlotsAvailableError();

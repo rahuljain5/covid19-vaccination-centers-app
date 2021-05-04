@@ -20,7 +20,13 @@ export class AppComponent {
   }
   getCal() {
     if (this.checkWeek) {
-      this.startDate.setDate(this.startDate.getDate() - 3);
+      let sd = new Date(this.startDate.toString());
+      sd.setDate(sd.getDate()-3);
+      let today = new Date();
+      if(sd.toLocaleDateString() === today.toLocaleDateString() || sd> today)
+        this.startDate = sd;
+      else 
+        this.startDate = today;
       this.getWeekInfo();
     }
     else {
@@ -57,6 +63,11 @@ export class AppComponent {
         this.ServerError(err);
 
       });
+  }
+
+  setResults(event:any[]){
+    this.results = event;
+    this.formEnabled = false;
   }
 
   private ServerError(err: any) {
