@@ -190,7 +190,6 @@
     }
 
     .card:not(.highlight-card) {
-      height: 16px;
       margin: 8px 0;
     }
 
@@ -268,8 +267,8 @@
       
     </form>
     </mat-card-content></mat-card>
+    <app-find-district-sessions *ngIf="formEnabled"></app-find-district-sessions>
   </div>
-  <app-find-district-sessions *ngIf="formEnabled"></app-find-district-sessions>
     <ng-template #elseBlock>
       <h2 >Showing all available slots for {{pincode}}</h2>
       <div  *ngFor="let res of results">
