@@ -1,7 +1,8 @@
-.example-viewport {
-        height: 500px;
+.viewport {
+        height: 600px;
         width: 100%;
-        overflow:scroll
+        overflow:scroll;
+        margin:4px;
 }
 mat-button-toggle-group
 {
