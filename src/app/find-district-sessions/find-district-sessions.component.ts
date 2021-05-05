@@ -15,6 +15,7 @@ export class FindDistrictSessionsComponent implements OnInit {
   states: any;
   startDate: Date = new Date();
   results = [];
+  matSpinnerEnabledForDist = false
   @Output() resultsLoaded: EventEmitter<any> = new EventEmitter()
   constructor(private service: AppService, private _snackBar: MatSnackBar) { }
 
@@ -33,6 +34,7 @@ export class FindDistrictSessionsComponent implements OnInit {
     }, err => console.error(err))
   }
   getCal() {
+    this.matSpinnerEnabledForDist = true;
     if (this.checkWeek) {
       this.startDate.setDate(this.startDate.getDate() - 3);
       this.getWeekInfo();
@@ -47,14 +49,16 @@ export class FindDistrictSessionsComponent implements OnInit {
       .subscribe(res => {
         this.results = res.centers;
         if (this.results.length > 0) {
-          // this.formEnabled = false;
+          this.matSpinnerEnabledForDist = false;
           this.resultsLoaded.emit(this.results)
         }
         else {
           this.noSlotsAvailableError();
-        }
+        }    
+        this.matSpinnerEnabledForDist = false;
       }, err => {
         this.ServerError(err);
+        this.matSpinnerEnabledForDist = false;
       });
   }
 
@@ -63,15 +67,16 @@ export class FindDistrictSessionsComponent implements OnInit {
       .subscribe(res => {
         this.results = res.sessions.map((session: any) => { return { name: session.name, district_name: session.district_name, block_name: session.block_name, from: session.from, to: session.to, fee_type: session.fee_type, sessions: [session] } });
         if (this.results.length > 0) {
-          // this.formEnabled = false;
+          this.matSpinnerEnabledForDist = false;
           this.resultsLoaded.emit(this.results)
         }
         else {
           this.noSlotsAvailableError();
         }
+        this.matSpinnerEnabledForDist = false;
       }, err => {
-        this.ServerError(err);
-
+        this.ServerError(err);        
+        this.matSpinnerEnabledForDist = false;
       });
   }
 

@@ -263,17 +263,32 @@
       </mat-form-field>
     <datepicker (selectStart)="setStartDate($event)"></datepicker >
       <mat-slide-toggle class="block" color="primary" name="toggleweek" [(ngModel)]="checkWeek">&#x00B1;3 days from selection</mat-slide-toggle>
-        <button class = "block" mat-stroked-button color="primary" (click)="getCal()" title="Search">GO</button>
+        <button class = "block" mat-stroked-button color="primary" (click)="getCal()" title="Search" hidden = "!matSpinnerEnabledForPin">GO</button>
+        <mat-progress-spinner  mode="indeterminate" diameter="20" *ngIf="matSpinnerEnabledForPin"></mat-progress-spinner>
       
     </form>
     </mat-card-content></mat-card>
     <app-find-district-sessions (resultsLoaded)="setResults($event)" *ngIf="formEnabled"></app-find-district-sessions>
   </div>
-    <ng-template #elseBlock>
-      <h2 >Showing all available slots for {{pincode}}</h2>
-      <div  *ngFor="let res of results">
-        <app-card-component [model]="res"></app-card-component>
+    <ng-template #elseBlock >
+      <h2 >Showing all available sessions!</h2>
+      <mat-button-toggle-group name="fontStyle" (change)="setFlag($event, true)">
+        <mat-button-toggle color="primary" [checked] = "!hideZeroCapacitySessions" value="0">Show all centers</mat-button-toggle>
+        <mat-button-toggle color="primary" [checked] = "hideZeroCapacitySessions" value="1">Hide centers with 0 Capacity</mat-button-toggle>
+      </mat-button-toggle-group>
+      <mat-button-toggle-group name="fontStyle" (change)="setFlag($event, false)">
+        <mat-button-toggle color="primary" value="18">Sessions for 18 - 45</mat-button-toggle> 
+         <mat-button-toggle value="45">Sessions for 45+</mat-button-toggle>
+        <mat-button-toggle checked = "true" value="0">Show All Sessions</mat-button-toggle>
+      </mat-button-toggle-group>
+      <cdk-virtual-scroll-viewport *ngIf="filteredResults.length; else noResErr" class="example-viewport" itemSize="10">
+      <div  *cdkVirtualFor="let res of filteredResults">
+        <app-card-component [hideZeroCapacitySessions]="hideZeroCapacitySessions" [model]="res"></app-card-component>
       </div>
+    </cdk-virtual-scroll-viewport>
+    <ng-template #noResErr>
+      <h3 class="warn"> No Results found for selected Filters </h3>
+    </ng-template>
     </ng-template>
   <!-- Links -->
 

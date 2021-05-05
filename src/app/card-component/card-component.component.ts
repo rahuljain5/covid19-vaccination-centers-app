@@ -7,6 +7,8 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CardComponentComponent implements OnInit {
   @Input() model:any;
+  @Input()
+  hideZeroCapacitySessions!: boolean;
   ngOnInit(): void {
   }
 

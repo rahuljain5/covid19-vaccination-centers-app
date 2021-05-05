@@ -20,8 +20,8 @@
             <datepicker (selectStart)="setStartDate($event)"></datepicker>
             <mat-slide-toggle class="block" color="primary" name="toggleweek" [(ngModel)]="checkWeek">&#x00B1;3 days
                 from selection</mat-slide-toggle>
-            <button class="block" mat-stroked-button color="primary" title="Search" (click)="getCal()">GO</button>
-
+            <button class = "block" mat-stroked-button color="primary" (click)="getCal()" title="Search" hidden = "!matSpinnerEnabledForDist">GO</button>
+            <mat-progress-spinner  mode="indeterminate" diameter="20" *ngIf="matSpinnerEnabledForDist"></mat-progress-spinner>
         </form>
     </mat-card-content>
 </mat-card>

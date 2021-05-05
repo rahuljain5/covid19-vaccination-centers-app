@@ -17,11 +17,13 @@ import {MatCardModule} from '@angular/material/card';
 import {MatExpansionModule} from '@angular/material/expansion'; 
 import {MatListModule} from '@angular/material/list'; 
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-
-
+import {MatButtonToggleModule} from '@angular/material/button-toggle'; 
 import {MatSelectModule} from '@angular/material/select'; 
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'; 
+import {ScrollingModule} from '@angular/cdk/scrolling'; 
 import { FindDistrictSessionsComponent } from './find-district-sessions/find-district-sessions.component'; 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +47,10 @@ import { FindDistrictSessionsComponent } from './find-district-sessions/find-dis
     MatListModule,
     MatSnackBarModule,
     MatSlideToggleModule,
-    MatSelectModule
+    MatSelectModule,
+    MatButtonToggleModule,
+    MatProgressSpinnerModule,
+    ScrollingModule
   ],
   providers: [AppService],
   bootstrap: [AppComponent]

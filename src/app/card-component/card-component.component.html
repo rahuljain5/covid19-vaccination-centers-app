@@ -1,4 +1,4 @@
-<mat-card class="card">
+<mat-card class="card" *ngIf="model.sessions.length">
     <mat-card-header>
       <mat-card-title>{{model.name}}</mat-card-title>
       <mat-card-subtitle>{{model.district_name}}, {{model.block_name}} </mat-card-subtitle>
@@ -7,7 +7,7 @@
         <span>Fee: {{model.fee_type}}</span>
         <span>From: {{model.from}} To: {{model.to}} </span>
         <div *ngFor="let session of model.sessions">
-        <mat-accordion>
+        <mat-accordion *ngIf="!hideZeroCapacitySessions || session.available_capacity > 0">
             <mat-expansion-panel hideToggle>
               <mat-expansion-panel-header>
                 <mat-panel-title>
