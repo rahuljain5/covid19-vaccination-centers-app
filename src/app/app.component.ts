@@ -49,7 +49,6 @@ export class AppComponent {
       this.filteredResults = this.filteredResults.filter(x => x.sessions.some((s:any) => s.min_age_limit === this.ageFilter ))
   }
   setFlag(event:any, filterByCapacity:boolean){
-    console.log(event);
     if(filterByCapacity)
       this.hideZeroCapacitySessions = event.value === "1";
     else
