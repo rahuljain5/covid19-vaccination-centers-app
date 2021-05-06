@@ -22,6 +22,7 @@
                     <mat-list-item role="listitem">Number of Slots: {{session.slots.length}} </mat-list-item>
                     <mat-list-item role="listitem" [class]="session.available_capacity ? 'success' : 'warn'">Capacity: {{session.available_capacity}} </mat-list-item>
                     <mat-list-item role="listitem">Vaccine: {{session.vaccine === "" ? "Not Specified" : session.vaccine }} </mat-list-item>
+                    <mat-list-item role="listitem"><a href="https://www.cowin.gov.in/home" target="_blank">Register<mat-icon class="icon">open_in_new</mat-icon></a></mat-list-item>
                 </mat-list>
             </mat-expansion-panel>
         </mat-accordion>  
